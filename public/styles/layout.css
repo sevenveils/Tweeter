@@ -10,16 +10,77 @@ html {
   box-sizing: inherit;
 }
 
-/*
- * Global layout stuff
- */
-
 body {
-  margin: 0;
-  color: #244751;
   background-color: #eee;
+  clear: both;
+  color: #244751;
+  font-family: 'Roboto Condensed', sans-serif;
+  margin: 0;
 }
 
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
+.new-tweet h2 {
+  border-bottom: 1px solid black;
+  text-align: left;
+}
+
+.tweets {
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #FBF7F4;
+  margin-top: 60px;
+}
+
+article {
+  opacity: 0.5;
+}
+
+article:hover {
+  opacity: 1;
+}
+
+.tweets footer {
+  border-top: 1px solid #FBF7F4;
+}
+
+.tweets header h2 {
+  margin: 5px 100px 0 0;
+  font-weight: 700;
+}
+
+.tweets h4 {
+  margin: 5px 20px;
+}
+
+.tweets header {
+  background-color: lightblue;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+}
+
+.tweets img {
+  height: 50px;
+  margin: 10px 0;
+  opacity: 0.5;
+  width: 50px;
+}
+
+.content {
+  overflow-wrap: break-word;
+}
+
+.container {
+  background-color: #ffffff;
+  margin: 0 auto;
+  max-width: 450px;
+  margin-top: 80px;
+  padding: 2em;
+}
+
+.negChar {
+  color: #BB3E49;
+}
+
+
+
