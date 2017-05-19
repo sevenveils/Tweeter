@@ -9,20 +9,17 @@
   width: 100%;
   z-index: 1;
 }
-
 #nav-bar .logo {
   float: left;
   height: 80px;
   padding-right: 10px;
   width: 80px;
 }
-
 #nav-bar .header {
   float: left;
   font-size: 200%;
   line-height: 80px;
 }
-
 #compose {
   background-color: white;
   border-radius: 5px;
@@ -31,7 +28,6 @@
   opacity: 0.5;
   padding: 15px;
 }
-
 #compose:hover {
   opacity: 1;
 }

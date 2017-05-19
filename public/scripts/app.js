@@ -1,14 +1,6 @@
 $(function () {
   var $tweetContainer = $(".tweets");
 
-  function renderTweets(tweets) {
-    $tweetContainer.empty();
-    for (var ii = 0; ii < tweets.length; ii++) {
-      let tweet = tweets[ii];
-      $tweetContainer.prepend(createTweetElement(tweet));
-    }
-  }
-
   function createTweetElement(tweet) {
     var html = `
     <article class="tweet">
@@ -29,18 +21,13 @@ $(function () {
     return html;
   }
 
-  $("form").on("submit", function(evt) {
-    evt.preventDefault();
-    let content = $("textarea").val();
-    if (content.length === 0) {
-      $("#empty-tweet").slideDown("fast");
-    } else if (content.length > 140) {
-      $("#excessive-tweet").slideDown("fast");
-    } else {
-      var formStuff = $(this).serialize();
-      createNewTweet(formStuff);
+  function renderTweets(tweets) {
+    $tweetContainer.empty();
+    for (var ii = 0; ii < tweets.length; ii++) {
+      let tweet = tweets[ii];
+      $tweetContainer.prepend(createTweetElement(tweet));
     }
-  });
+  }
 
   function loadTweets() {
     $.ajax({
@@ -66,16 +53,27 @@ $(function () {
     });
   }
 
-  // jquery hide/show
-  $("button").click(function(){ // add class to button and make it more specific
+  function escape(str) {
+  var div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+  }
+
+  $("form").on("submit", function(evt) {
+    evt.preventDefault();
+    let content = $("textarea").val();
+    if (content.length === 0) {
+      $("#empty-tweet").slideDown("fast");
+    } else if (content.length > 140) {
+      $("#excessive-tweet").slideDown("fast");
+    } else {
+      var formStuff = $(this).serialize();
+      createNewTweet(formStuff);
+    }
+  });
+
+  $("button").click(function(){
     $(".new-tweet").slideToggle();
     $("textarea").focus();
   });
-
-  // escape function
-  function escape(str) {
-    var div = document.createElement("div");
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-  }
 });
