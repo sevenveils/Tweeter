@@ -2,7 +2,16 @@
 
 Tweeter is a simple, single-page Twitter clone.
 
-This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express and MongoDB back-end skills.
+A Single Page App built with HTML, CSS, JS, jQuery, Ajax on the client-side and Node, Express and MongoDB on the server-side.
+
+## Final Product
+
+!["Screenshot description"](URL)
+
+!["Tweet Feed"](https://github.com/sevenveils/tweeter/blob/master/docs/Tweeter%20-%20feed.png?raw=true)
+!["Compose tweet form"](https://github.com/sevenveils/tweeter/blob/master/docs/Tweeter%20-%20compose%20tweet.png?raw=true)
+!["Empty Tweet error message"](https://github.com/sevenveils/tweeter/blob/master/docs/Tweeter%20-%20empty%20tweet%20error.png?raw=true)
+!["Exceeded character account error"](https://github.com/sevenveils/tweeter/blob/master/docs/Tweeter%20-%20exceeded%20character%20count%20allowed.png?raw=true)
 
 ## Getting Started
 
@@ -13,5 +22,11 @@ This repository is the starter code for the project: Students will fork and clon
 
 ## Dependencies
 
+- Body-Parser
+- Chance
 - Express
+- Md5
+- MongoDB
+- Nodemon
 - Node 5.10.x or above
+
