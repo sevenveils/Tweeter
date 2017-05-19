@@ -1,118 +1,81 @@
-function renderTweets(tweets) {
-  var $tweetContainer = $('.tweets');
-  $tweetContainer.empty();
-  for (var ii = 0; ii < tweets.length; ii++) {
-    let tweet = tweets[ii];
-    $tweetContainer.prepend(createTweetElement(tweet));
+$(function () {
+  var $tweetContainer = $(".tweets");
+
+  function renderTweets(tweets) {
+    $tweetContainer.empty();
+    for (var ii = 0; ii < tweets.length; ii++) {
+      let tweet = tweets[ii];
+      $tweetContainer.prepend(createTweetElement(tweet));
+    }
   }
-}
 
-function createTweetElement(tweet) {
-  const html = `
-  <article>
-    <header>
-      <img class='logo' src="${tweet.user.avatars.small}">
-      <h2 class='full-name'>${escape(tweet.user.name)}</h2>
-      <h4 class='user-handle'>${escape(tweet.user.handle)}</h4>
-    </header>
-      <p class='content'>${escape(tweet.content.text)};</p>
-    <footer>
-      <p class='date-stamp'>${new Date(tweet.created_at)}</p>
-    </footer>
-  </article>
-  `
-  // ${escape()};
-  // ${escape(textFromUser)}`);
-  return html;
-}
+  function createTweetElement(tweet) {
+    var html = `
+    <article class="tweet">
+      <header>
+        <img class="logo" src="${tweet.user.avatars.small}">
+        <h2 class="full-name">${escape(tweet.user.name)}</h2>
+        <h4 class="user-handle">${escape(tweet.user.handle)}</h4>
+      </header>
+        <p class="content">${escape(tweet.content.text)}</p>
+      <footer>
+        <img class="icon" src='images/heart.png'>
+        <img class="icon" src='images/retweet.png'>
+        <img class="icon" src='images/flag.png'>
+        <p class="date-stamp">${moment(tweet.created_at).startOf("hour").fromNow()}</p>
+      </footer>
+    </article>
+    `
+    return html;
+  }
 
-//  new tweet function here
-
-$('form').on('submit', function(evt) {
-  evt.preventDefault();
-  let content = $('textarea').val();
+  $("form").on("submit", function(evt) {
+    evt.preventDefault();
+    let content = $("textarea").val();
     if (content.length === 0) {
-      console.log("you cannot publish an empty tweet");
+      $("#empty-tweet").slideDown("fast");
     } else if (content.length > 140) {
-      console.log("your tweet is too long.");
+      $("#excessive-tweet").slideDown("fast");
     } else {
       var formStuff = $(this).serialize();
       createNewTweet(formStuff);
-      $('textarea').val('');
     }
-
-});
-
-function loadTweets() {
-  $.ajax({
-    url: '/tweets',
-    method: 'GET',
-    dataType: 'json',
-    success: renderTweets
   });
-}
 
-loadTweets();
+  function loadTweets() {
+    $.ajax({
+      url: "/tweets",
+      method: "GET",
+      dataType: "json",
+      success: renderTweets
+    });
+  }
 
-function createNewTweet(data) {
-  $.ajax({
-    url: '/tweets',
-    data: data,
-    method: 'POST',
-    success: loadTweets
+  loadTweets();
+
+  function createNewTweet(data) {
+    $.ajax({
+      url: "/tweets",
+      data: data,
+      method: "POST",
+      success: function(data) {
+        loadTweets();
+        $("textarea").val('');
+        $(".counter").text("140");
+      }
+    });
+  }
+
+  // jquery hide/show
+  $("button").click(function(){ // add class to button and make it more specific
+    $(".new-tweet").slideToggle();
+    $("textarea").focus();
   });
-}
 
-// jquery hide/show
-
-$('.new-tweet').hide();
-
-$('button').click(function(){
-  $('.new-tweet').slideToggle();
-  $('textarea').focus();
+  // escape function
+  function escape(str) {
+    var div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
 });
-
-$('input').on('click', function(){
-$('.counter').text('140');
-});
-
-// escape function
-
-function escape(str) {
-  var div = document.createElement('div');
-  div.appendChild(document.createTextNode(str));
-  return div.innerHTML;
-}
-
-// function timeSince(date) {
-
-//   var seconds = Math.floor((new Date() - date) / 1000);
-
-//   var interval = Math.floor(seconds / 31536000);
-
-//   if (interval > 1) {
-//     return interval + " years";
-//   }
-//   interval = Math.floor(seconds / 2592000);
-//   if (interval > 1) {
-//     return interval + " months";
-//   }
-//   interval = Math.floor(seconds / 86400);
-//   if (interval > 1) {
-//     return interval + " days";
-//   }
-//   interval = Math.floor(seconds / 3600);
-//   if (interval > 1) {
-//     return interval + " hours";
-//   }
-//   interval = Math.floor(seconds / 60);
-//   if (interval > 1) {
-//     return interval + " minutes";
-//   }
-//   return Math.floor(seconds) + " seconds";
-// }
-// var aDay = 24*60*60*1000
-// console.log(timeSince(new Date(Date.now()-aDay)));
-// console.log(timeSince(new Date(Date.now()-aDay*2)));
-
-

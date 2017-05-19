@@ -1,13 +1,15 @@
 $(document).ready(function() {
   var maxLength = 140;
-  $('textarea').on('input', function() {
+  $("textarea").on("input", function() { // add class to textarea
+    var counter = $(this).closest(".new-tweet").find(".counter");
     var length = $(this).val().length;
     var charRemaining = maxLength-length;
-    $(this).parent().find('.counter').text(charRemaining);
-      if (charRemaining <= 0) {
-        $(this).parent().find('.counter').addClass('negChar');
-      } else {
-        $(this).parent().find('.counter').removeClass('negChar');
-      }
+    counter.text(charRemaining);
+    if (charRemaining < 0) {
+      counter.addClass("negChar");
+    } else {
+      counter.removeClass("negChar");
+      $(".errors p").slideUp("fast");
+    }
   });
 });
