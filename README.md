@@ -6,8 +6,6 @@ A Single Page App built with HTML, CSS, JS, jQuery, Ajax on the client-side and 
 
 ## Final Product
 
-!["Screenshot description"](URL)
-
 !["Tweet Feed"](https://github.com/sevenveils/tweeter/blob/master/docs/Tweeter%20-%20feed.png?raw=true)
 !["Compose tweet form"](https://github.com/sevenveils/tweeter/blob/master/docs/Tweeter%20-%20compose%20tweet.png?raw=true)
 !["Empty Tweet error message"](https://github.com/sevenveils/tweeter/blob/master/docs/Tweeter%20-%20empty%20tweet%20error.png?raw=true)
@@ -29,4 +27,3 @@ A Single Page App built with HTML, CSS, JS, jQuery, Ajax on the client-side and 
 - MongoDB
 - Nodemon
 - Node 5.10.x or above
-
